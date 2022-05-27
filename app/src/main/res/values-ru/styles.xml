@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
+    <style name="TVHeadline" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/radio_canada_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TVMainDescription" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/radio_canada_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="TVAdditionalDescription" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/radio_canada_regular</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="CustomDatePickerDialog"
+        parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorControlActivated">@color/pink</item>
+        <item name="android:textColorSecondary">@color/pink</item>
+        <item name="colorAccent">@color/second_green</item>
+    </style>
+    <style name="customProgressBar" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/white</item>
+    </style>
+
+
+    <style name="TVHeadlineVewPager" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/radio_canada_bold</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TVSkipViewPager" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/radio_canada_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

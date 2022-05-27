@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        app:title="@string/settings_design">
+
+        <SwitchPreferenceCompat
+            app:key="dark_theme"
+            app:title="@string/settings_screen_select_dark_theme" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/notifications">
+
+        <SwitchPreferenceCompat
+            app:key="notifications_quote"
+            app:title="@string/settings_notifications_quote" />
+
+        <SwitchPreferenceCompat
+            app:key="notifications_state"
+            app:title="@string/settings_notifications_state" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/setting_category_languages_title">
+        <ListPreference
+            android:key="gender_preference"
+            android:title="@string/setting_category_languages_title"
+            android:entries="@array/setting_category_languages_array"
+            android:entryValues="@array/setting_category_languages_array_values"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="help_category"
+        app:title="@string/settings_help">
+    <Preference
+        app:key="feedback"
+        app:title="@string/send_feedback"
+        app:summary="@string/send_feedback_text"/>
+    </PreferenceCategory>
+
+
+</androidx.preference.PreferenceScreen>

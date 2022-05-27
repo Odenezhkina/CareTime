@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">CareTime</string>
+    <string name="statistics">statistics</string>
+    <string name="tv_statistics">Analyse your week:</string>
+    <string name="radar_label">Your average points for current week</string>
+    <string name="quote">quote</string>
+    <string name="home">home</string>
+    <string name="settings">settings</string>
+    <string name="track_your_health">Track your life:</string>
+    <string name="content_description_sleep">Sleep icon</string>
+    <string name="content_description_water">Water icon</string>
+    <string name="content_description_activity">Activity icon</string>
+    <string name="sleep">Sleep</string>
+    <string name="water">Water</string>
+    <string name="activity">Activity</string>
+    <string name="mood">Mood</string>
+    <string name="nutrition">Nutrition</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+
+    <string-array name="months">
+        <item>jan</item>
+        <item>feb</item>
+        <item>mar</item>
+        <item>apr</item>
+        <item>may</item>
+        <item>june</item>
+        <item>july</item>
+        <item>aug</item>
+        <item>sep</item>
+        <item>oct</item>
+        <item>nov</item>
+        <item>dec</item>
+    </string-array>
+
+    <string name="Settings">Settings</string>
+    <string name="notifications">Notifications</string>
+    <string name="stats_headline">Statistics</string>
+
+    <string name="image_desc_universal_f">image desc universal fragment</string>
+
+    <string name="settings_screen_select_dark_theme">Dark theme</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="send_feedback_text">Report technical issues or suggest new features</string>
+    <string name="settings_design">Design</string>
+    <string name="settings_notifications_quote">Daily quote</string>
+    <string name="settings_notifications_state">Check trackers</string>
+    <string name="settings_help">Help</string>
+    <string name="setting_category_languages_title">Language</string>
+    <string-array name="setting_category_languages_array">
+        <item name="rus">Russian</item>
+        <item name="eng">English</item>
+    </string-array>
+    <string-array name="setting_category_languages_array_values">
+        <item name="rus">rus</item>
+        <item name="eng">eng</item>
+    </string-array>
+
+    <string name="notification_quote_title">Daily quote</string>
+    <string name="notification_state_title">Keep going!</string>
+    <string name="notification_state_content">Rate your health</string>
+
+    <string name="please_restart">Please restart app</string>
+
+    <string-array name="view_pager_headlines">
+        <item>Track your well-being</item>
+        <item>Get daily quote</item>
+        <item>Unlock new trackers</item>
+        <item>Improve your life</item>
+    </string-array>
+    <string-array name="view_pager_descriptions">
+        <item>With the help of trackers, evaluate your physical and moral condition, get statistics for each month in the form of a convenient chart</item>
+        <item>Daily quotes will help you keep motivated and continue the path of taking care of your own health</item>
+        <item>Complete various tasks in the app and open access to new trackers</item>
+        <item>Start a healthy lifestyle to enhance productivity and achieve the bravest goals</item>
+    </string-array>
+    <string name="wf_addition">This is your safe place for self care and work on yourself</string>
+    <string name="wf_title">Welcome to the CareTime!</string>
+    <string name="wf_hint">swipe right to continue>></string>
+    <string name="wf_skip"><u>skip</u></string>
+    <string name="ff_lets_begin">Let’s begin!</string>
+    <string name="ff_start">start</string>
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fu_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="50dp"
+    tools:context=".viewpager.UniversalFragment">
+
+    <TextView
+        android:id="@+id/uf_headline"
+        style="@style/TVHeadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:textSize="31sp"
+        android:gravity="center"
+        android:text="Track your well-being" />
+
+    <ImageView
+        android:id="@+id/uf_image_view"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/vp_improvement_icon"
+        android:contentDescription="@string/image_desc_universal_f" />
+
+    <TextView
+        android:id="@+id/uf_description"
+        style="@style/TVMainDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="With the help of trackers, evaluate your physical and moral condition, get statistics for each month in the form of a convenient chart" />
+
+
+</LinearLayout>

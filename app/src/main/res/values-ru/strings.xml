@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">CareTime</string>
+    <string name="quote">цитата</string>
+    <string name="statistics">статистика</string>
+    <string name="radar_label">Ваши средние показатели за текущую неделю</string>
+    <string name="tv_statistics">Проанализируйте свою неделю:</string>
+    <string name="home">домой</string>
+    <string name="settings">настройки</string>
+    <string name="track_your_health">Отслеживайте свою жизнь:</string>
+    <string name="content_description_sleep">content_description_sleep</string>
+    <string name="content_description_water">content_description_water</string>
+    <string name="content_description_activity">content_description_activity</string>
+    <string name="sleep">Сон</string>
+    <string name="water">Вода</string>
+    <string name="activity">Активность</string>
+    <string name="mood">Настроение</string>
+    <string name="nutrition">Питание</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+
+    <string-array name="months">
+        <item>янв</item>
+        <item>фев</item>
+        <item>март</item>
+        <item>апр</item>
+        <item>мая</item>
+        <item>июня</item>
+        <item>июля</item>
+        <item>авг</item>
+        <item>сен</item>
+        <item>окт</item>
+        <item>ноя</item>
+        <item>дек</item>
+    </string-array>
+
+    <string name="Settings">Настройки</string>
+    <string name="notifications">Уведомления</string>
+    <string name="stats_headline">Статистика</string>
+
+    <string name="image_desc_universal_f">image desc universal fragment</string>
+
+    <string name="settings_screen_select_dark_theme">Темная тема</string>
+    <string name="send_feedback">Отправить отзыв</string>
+    <string name="send_feedback_text">Сообщите о технических проблемах или предложите новые функци</string>
+    <string name="settings_design">Дизайн</string>
+    <string name="settings_notifications_quote">Ежедневная цитата</string>
+    <string name="settings_notifications_state">Заполнить трекеры</string>
+    <string name="settings_help">Помощь</string>
+    <string name="setting_category_languages_title">Язык</string>
+   <string-array name="setting_category_languages_array">
+       <item name="rus">Русский</item>
+       <item name="eng">Английский</item>
+   </string-array>
+    <string-array name="setting_category_languages_array_values">
+        <item name="rus">rus</item>
+        <item name="eng">eng</item>
+    </string-array>
+
+    <string name="notification_quote_title">Ежедневная цитата</string>
+    <string name="notification_state_title">Продолжайте двигаться!</string>
+    <string name="notification_state_content">Оцените свое состояние</string>
+
+    <string name="please_restart">Пожалуйста, перезагрузите приложение</string>
+
+    <string-array name="view_pager_headlines">
+        <item>Следите за своим самочувствием</item>
+        <item>Получайте новую цитату каждый день</item>
+        <item>Открывайте новые трекеры</item>
+        <item>Улучшайте свою жизнь</item>
+    </string-array>
+    <string-array name="view_pager_descriptions">
+        <item>С помощью трекеров оценивайте свое физическое и моральное состояние, получайте статистику за каждый месяц в виде удобного графика</item>
+        <item>Ежедневные цитаты помогут сохранить мотивацию и продолжить путь заботы о своем здоровье</item>
+        <item>Выполняйте различные задания в приложении и открывайте доступ к новым трекерам</item>
+        <item>Начните вести здоровый образ жизни, чтобы повысить продуктивность и достичь самых смелых целей</item>
+    </string-array>
+    <string name="wf_addition">Это приложение может стать вашим безопасным местом для ухода за собой</string>
+    <string name="wf_title">Добро пожаловать в CareTime!</string>
+    <string name="wf_hint">проведите вправо, чтобы продолжить>></string>
+    <string name="wf_skip"><u>пропустить</u></string>
+    <string name="ff_lets_begin">Начнем!</string>
+    <string name="ff_start">начать</string>
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ff_cl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="50dp"
+    tools:context=".viewpager.FinishFragment">
+
+    <TextView
+        android:id="@+id/ff_tv_title"
+        style="@style/TVHeadline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/ff_lets_begin"
+        android:textSize="48sp"
+        app:layout_constraintVertical_bias="0.6"
+        app:layout_constraintDimensionRatio="12:4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/pink_btn_round_corners"
+        android:text="@string/ff_start"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textAllCaps="true"
+        android:paddingLeft="70dp"
+        android:paddingRight="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ff_tv_title" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

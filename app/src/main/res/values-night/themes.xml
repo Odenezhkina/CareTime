@@ -1,0 +1,27 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+<!--        <item name="colorPrimary">@color/second_green</item>-->
+<!--        <item name="colorAccent">@color/main_green</item>-->
+<!--        <item name="android:colorBackground">@color/for_dark_theme</item>-->
+<!--        <item name="colorPrimaryDark">@color/second_green</item>-->
+
+<!--&lt;!&ndash;        for bottom navigation view inactive tab&ndash;&gt;-->
+<!--        <item name="android:textColorSecondary">@color/black</item>-->
+
+<!--        <item name="colorControlActivated">@color/white</item>-->
+<!--        <item name="colorSwitchThumbNormal">@color/main_green</item>-->
+
+        <item name="colorPrimary">@color/for_dark_theme</item>
+        <item name="colorAccent">@color/main_green</item>
+        <item name="android:colorBackground">@color/for_dark_theme</item>
+        <item name="colorPrimaryDark">@color/main_green</item>
+<!--        <item name="android:backgroundTint">@color/pink</item>-->
+
+        <!--        for bottom navigation view inactive tab-->
+        <item name="android:textColorSecondary">@color/main_green</item>
+
+        <item name="colorControlActivated">@color/main_green</item>
+        <item name="colorSwitchThumbNormal">@color/second_green</item>
+
+    </style>
+</resources>
