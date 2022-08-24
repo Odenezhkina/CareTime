@@ -18,9 +18,6 @@ public interface TrackerDao {
     @Query("SELECT COUNT(headline) FROM trackers")
     int getTrackersCount();
 
-    @Query("DELETE FROM trackers")
-    void clearTrackers();
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertTracker(Tracker tracker);
 

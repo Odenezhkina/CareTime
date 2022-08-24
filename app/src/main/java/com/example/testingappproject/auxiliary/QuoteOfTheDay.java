@@ -13,12 +13,6 @@ public class QuoteOfTheDay {
             "\"When you know what you want and you want it badly enough, you'll find a way to get it.\"-Jim Ron",
             "\"A personal strategic work plan is the most important condition for achieving the set goal.\"-Brian Tracy"
     };
-    /*
-    этот метод возвращает массив, в котором первая строка является цитату и её автора.
-    Логично, что имя автора может быть "null" (а это строка, а не значение null).
-    В случае исключения (например, нет интернет-соединения),
-    метод возвращает случайно выбранную цитату из списка по умолчанию
-     */
 
     private String[] getDefaultQuote() {
         int randomIndex = (int) Math.round(Math.random() * 4);

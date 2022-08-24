@@ -17,6 +17,8 @@
     <string name="nutrition">Nutrition</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
+    <string name="points" translatable="false">%1$d/%2$d</string>
+    <string name="monitoring_dates" translatable="false">%1$d %2$s - %3$d %4$s</string>
 
     <string-array name="months">
         <item>jan</item>

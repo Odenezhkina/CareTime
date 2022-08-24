@@ -27,19 +27,10 @@ public class MainViewModel extends ViewModel {
             e.printStackTrace();
         }
         executor.shutdown();
-//        Thread thread = new Thread(this::loadData);
-//            thread.start();
-//            try {
-//                thread.join();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
         return data;
     }
 
     private LiveData<List<TrackerDatePoint>> loadData() {
-//        we get livedata only by the last date, so that we don't get a bunch of everything once again,
-//        that is, we always store data only for the current day, everything else is in the database
         AppDb database = App.getInstance().getDatabase();
         long lastDateId = database.dateDao().getLastDateId();
         LiveData<List<TrackerDatePoint>> data = database.trackerDatePointDao().getTrackerPoints(lastDateId);

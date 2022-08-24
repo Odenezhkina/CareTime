@@ -6,7 +6,6 @@ import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -39,19 +38,21 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
-        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
         Preference preferenceTheme = findPreference("dark_theme");
+        assert preferenceTheme != null;
         preferenceTheme.setOnPreferenceChangeListener((preference1, newValue) -> {
             SharedPreferences.Editor e = preferences.edit();
             e.putBoolean("isDarkTheme", newValue.equals(true));
             e.apply();
-            Toast.makeText(getContext(), getContext().getResources().getString(R.string.please_restart), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), requireContext().getResources().getString(R.string.please_restart), Toast.LENGTH_SHORT).show();
             return true;
         });
         
         
         Preference preferenceNotificationsState = findPreference("notifications_state");
+        assert preferenceNotificationsState != null;
         preferenceNotificationsState.setOnPreferenceChangeListener((preference, newValue) -> {
             if (newValue.equals(true)) {
                 checkIfChannelIsCreatedAlready();
@@ -62,25 +63,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             return true;
         });
         Preference preferenceNotificationsQuote = findPreference("notifications_quote");
+        assert preferenceNotificationsQuote != null;
         preferenceNotificationsQuote.setOnPreferenceChangeListener((p, v) -> {
             if (v.equals(true)) {
-                // Before you can deliver the notification on Android 8.0 and higher,
-                // you must register your app's notification channel with the system
-                // by passing an instance of NotificationChannel to createNotificationChannel()
                 checkIfChannelIsCreatedAlready();
-                // открываем диалоговое окно с выбором времени TimePickerDialog
-                // запускаем NotificationQuoteWorker c задержкой равной выбранному пользователем времени
                 showDialog(FLAG_QUOTE);
-                // если NotificationQuoteWorker уже был запущен, останавливаем и запускаем новый
-                // в самом методе если было задано время вызываем метод запуска NotificationQuoteWorker
             } else {
-                // останавливаем NotificationService
                 stopNotificationQuoteWorker(UNIQUE_WORK_NAME_QUOTE);
             }
             return true;
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void checkIfChannelIsCreatedAlready() {
         if (!preferences.getBoolean("isChannelCreated", false)) {
             createNotificationChannel();
@@ -97,11 +92,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         int minute = myCalender.get(Calendar.MINUTE);
 
         TimePickerDialog.OnTimeSetListener listener = (view, hourOfDay, minute1) -> startNotificationWorker(hourOfDay, minute1, flag);
-        // TimePickerDialog (Spinner Mode):  android.R.style.Theme_Holo_Light_Dialog_NoActionBar
-        // by default it is Clock Mode
-        // TimePickerDialog(Context context, int themeResId,
-        // TimePickerDialog.OnTimeSetListener listener,
-        // int hourOfDay, int minute, boolean is24HourView)
         TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                 R.style.CustomDatePickerDialog,
                 listener, hour, minute, true);
@@ -120,40 +110,32 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         } else {
             duration = Duration.ofMinutes(diffInMin + 24 * 60 * 60);
         }
+        duration.minusSeconds(50);
 
         if(flag == FLAG_QUOTE){
             PeriodicWorkRequest wr = new PeriodicWorkRequest.Builder(NotificationQuoteWorker.class, 1, TimeUnit.DAYS)
                     .setInitialDelay(duration)
                     .build();
-            // разделяем if_ом, чтобы дать каждому правильное уникальное имя(то есть уведомление с цитатами не
-            // будет перемешитваться с уведомлениями по трекерам)
-            WorkManager.getInstance(getContext()).enqueueUniquePeriodicWork(UNIQUE_WORK_NAME_QUOTE, ExistingPeriodicWorkPolicy.REPLACE, wr);
+            WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(UNIQUE_WORK_NAME_QUOTE, ExistingPeriodicWorkPolicy.REPLACE, wr);
         } else if(flag == FLAG_STATE){
             PeriodicWorkRequest wr = new PeriodicWorkRequest.Builder(NotificationStateWorker.class, 1, TimeUnit.DAYS)
                     .setInitialDelay(duration)
                     .build();
-            WorkManager.getInstance(getContext()).enqueueUniquePeriodicWork(UNIQUE_WORK_NAME_STATE, ExistingPeriodicWorkPolicy.REPLACE, wr);
+            WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(UNIQUE_WORK_NAME_STATE, ExistingPeriodicWorkPolicy.REPLACE, wr);
         }
     }
 
     private void stopNotificationQuoteWorker(String uniqueName) {
-        // cancel using by name
-        WorkManager.getInstance(getContext()).cancelUniqueWork(uniqueName);
+        WorkManager.getInstance(requireContext()).cancelUniqueWork(uniqueName);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // No sound
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(NOTIFICATIONS_CHANNEL_ID, "notifications", importance);
-            channel.setDescription("channel for notifications");
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel(NOTIFICATIONS_CHANNEL_ID, "notifications", importance);
+        channel.setDescription("channel for notifications");
+        NotificationManager notificationManager = requireActivity().getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
     }
 
 }

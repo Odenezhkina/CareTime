@@ -21,7 +21,6 @@ public class QuoteFragment extends Fragment {
     private TextView tvQuote;
     private TextView tvQuoteAuthor;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

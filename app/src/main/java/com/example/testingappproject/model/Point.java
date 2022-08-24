@@ -9,7 +9,6 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-//onUpdate = CASCADE?
 @Entity(tableName = "points", foreignKeys = {@ForeignKey(entity = Tracker.class, parentColumns = "id", childColumns = "tracker_id", onDelete = CASCADE),
         @ForeignKey(entity = Date.class, parentColumns = "id", childColumns = "date_id", onDelete = CASCADE)},
         indices = {@Index(value = {"tracker_id", "date_id"}, unique = true)})

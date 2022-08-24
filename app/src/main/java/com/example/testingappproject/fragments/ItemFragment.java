@@ -63,10 +63,7 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         handler = new Handler();
 
-        //hiding bottom navigation view
         try {
-            //this block was wrapped in a try-catch construction because method findViewById may produce NullPointerException
-            //we can interact with activity to which our fragment is attached with getActivity method
             BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation_view);
             bottomNavigationView.setVisibility(View.GONE);
         } catch (NullPointerException ex) {
@@ -79,7 +76,7 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
 
     @Override
     public void onDestroyView() {
-        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation_view);
+        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setVisibility(View.VISIBLE);
         super.onDestroyView();
     }
@@ -89,7 +86,6 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
 
         chart = view.findViewById(R.id.chart);
         chart.getDescription().setEnabled(false);
-        // removing background grid: X - Ox; left and right - Oy
         chart.getAxisLeft().setDrawGridLines(false);
         chart.getXAxis().setDrawGridLines(false);
         chart.getAxisRight().setDrawGridLines(false);
@@ -97,9 +93,6 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
         Legend legendBarChart = chart.getLegend();
         customizeLegend(legendBarChart);
 
-        //we find our views by id in fragment in onViewCreated method because in onCreate it may produce NullPointerException
-        //also in fragments we can't just call findViewById (like in activities), to find view we need to use argument View view from method
-        //in which we are going to find views
         tvHeadline = view.findViewById(R.id.tv_headline);
         progressBar = view.findViewById(R.id.progressBar);
         tvPoints = view.findViewById(R.id.tv_points);
@@ -120,9 +113,7 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
             setProgressPoints(currentStateOfPoints, maxStateOfPoints);
         });
 
-        //to handle click we need to create an OnClickListener
         View.OnClickListener onClickListener = v -> {
-            //with id we will find what View was clicked and do something we want to
             switch (v.getId()) {
                 case R.id.btn_plus:
                     if (currentStateOfPoints < maxStateOfPoints) {
@@ -162,7 +153,7 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
     }
 
     private void setTvPoints(int newPoints) {
-        tvPoints.setText(newPoints + "/" + maxStateOfPoints);
+        tvPoints.setText(getString(R.string.points, newPoints, maxStateOfPoints));
     }
 
     @Override
@@ -182,15 +173,9 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
     }
 
     private void getAllLinkedPointsAndDates() {
-        // getAllLinkedPointsAndDates() отрабатывает быстрее, чем подписка на LiveData,
-        // поэтому tracker_id равен нулю в момент поиска в базе данных Point_ов по tracker_id
-        // что делать: сделать tracker volatile и тут как-то ждать его обновления?
-        while (tracker_id == 0) {
-            // ждем
-        }
 
-        // тут мы получаем данные и приводим их в порядок: удаляем, если слишком много,
-        // и добавляем, если слишком мало
+        while (tracker_id == 0) {
+        }
         List<Point> linkedPoints = App.getInstance().getDatabase().pointDao().getPointsLinkedToTracker(tracker_id);
         List<Date> allDates = App.getInstance().getDatabase().dateDao().getAllDates();
 
@@ -198,12 +183,9 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
             linkedPoints.remove(linkedPoints.size() - 1);
             linkedPoints.add(new Point(currentStateOfPoints));
         }
-        // что выводить когда данных недостаточно: добавляем нули
-        // что выводить когда данных слишком много: берем последние 7 данных
         while (linkedPoints.size() < 7) {
             linkedPoints.add(new Point(0));
         }
-        // удаляем ненужное, чтобы остались данные только по 7 последним дням
         if (linkedPoints.size() > 7) {
             linkedPoints = linkedPoints.subList(linkedPoints.size() - 7, linkedPoints.size());
         }
@@ -227,10 +209,8 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
     private void displayMonitoringDates(List<Date> allDates) {
         String firstDateMonth = monthToString(allDates.get(0).getMonth());
         String lastDateMonth = monthToString(allDates.get(allDates.size() - 1).getMonth());
-        tvStatsDates.setText(allDates.get(0).getDay() + " "
-                + firstDateMonth +
-                " - " + allDates.get(allDates.size() - 1).getDay()
-                + " " + lastDateMonth);
+        tvStatsDates.setText(getString(R.string.monitoring_dates, allDates.get(0).getDay(), firstDateMonth,
+                allDates.get(allDates.size() - 1).getDay(), lastDateMonth));
     }
 
     private String monthToString(int month) {
@@ -239,8 +219,6 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
 
     private void setDataToBarChart(List<Integer> linkedPoints, List<Date> allDates) {
         ArrayList<BarEntry> values = new ArrayList<>();
-        // x меняется динамически, можно for_ом пройтись и все, доставая из массива y равные
-        // points.points
         for (int i = 0; i < linkedPoints.size(); i++) {
             values.add(new BarEntry(i, linkedPoints.get(i)));
         }
@@ -249,11 +227,8 @@ public class ItemFragment extends Fragment implements CustomizableLegend {
         if (chart.getData() != null && chart.getData().getDataSetCount() > 0) {
             dataSet = (BarDataSet) chart.getData().getDataSetByIndex(0);
             dataSet.setValues(values);
-            // чтобы перерисовывалось все
             chart.getData().notifyDataChanged();
-            // чтобы показать, что мы что-то изменили (перересовывать все не будет)
             chart.notifyDataSetChanged();
-            // знак, чтобы перерисовать
             chart.invalidate();
         } else {
             dataSet = new BarDataSet(values, tvHeadline.getText() + " ");

@@ -19,12 +19,6 @@ public interface PointDao {
     @Query("SELECT * FROM points WHERE tracker_id LIKE :tracker_id")
     List<Point> getPointsLinkedToTracker(long tracker_id);
 
-    @Query("DELETE FROM points")
-    void clearPoints();
-
-    @Query("SELECT * FROM points")
-    List<Point> getAllPoints();
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPoint(Point point);
 

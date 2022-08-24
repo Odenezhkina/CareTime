@@ -23,7 +23,4 @@ public interface DateDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertDate(Date date);
 
-    @Query("DELETE FROM dates")
-    void clearDates();
-
 }

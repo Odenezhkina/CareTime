@@ -81,9 +81,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     private void startMainWorker() {
         Long delayTimeUntilMidnight = getTimeUntilMidnight();
-        // Note: The minimum repeat interval that can be defined is 15 minutes
-        // Every day MainWorker will update trackers and get a new quote
-        // setInitialDelay() will run only once: in cold boot
         PeriodicWorkRequest wr = new PeriodicWorkRequest
                 .Builder(MainWorker.class, 1, TimeUnit.DAYS)
                 .setInitialDelay(delayTimeUntilMidnight, TimeUnit.MILLISECONDS)
@@ -96,8 +93,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     }
 
     private Long getTimeUntilMidnight() {
-        // получить текущее время
-        // из ближайшей полночи вычесть это время
         java.util.Date currentTime = new java.util.Date();
         DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         String[] timeText = timeFormat.format(currentTime).split(":");
@@ -107,16 +102,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     private void openFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        //this is a helper class that replaces the container with the fragment. You can replace or add fragments.
         fragmentTransaction.replace(R.id.frame_layout_content, fragment);
         fragmentTransaction.addToBackStack(null);
-        //if you add fragments it will be added to the backStack. If you replace the fragment it will add only the last fragment
         fragmentTransaction.commit();
-        // commit() performs the action
     }
 
     private void setListenerOnBottomNavigationView() {
-        //to switch between fragments and to interact with we need FragmentManager and FragmentTransaction
         fragmentManager = getSupportFragmentManager();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
 
@@ -143,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
             return false;
         });
 
-        // Set default selection
         bottomNavigationView.setSelectedItemId(R.id.home);
     }
 

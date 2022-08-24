@@ -45,7 +45,6 @@ public class NotificationStateWorker extends Worker {
                 .setAutoCancel(true);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-        // notificationId is a unique int for each notification that you must define
         notificationManager.notify(1, builder.build());
     }
 

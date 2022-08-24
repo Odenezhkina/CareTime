@@ -39,13 +39,11 @@ public class AdditionalViewModel extends ViewModel {
     private int[] loadData() {
         AppDb database = App.getInstance().getDatabase();
         List<Date> lastSevenDates = database.dateDao().getLastSevenDates();
-        // проходимся по листу дат, доставая у каждой значение points, достаем именно Point, чтобы на нужный индекс
-        // прибавлять Point.points -> Point.tracker_id == 4 -> list.add(Point.points, index = 4)
         int[] averagePoints = new int[database.trackerDao().getTrackersCount()];
         for (int i = 0; i < lastSevenDates.size(); i++) {
             List<Point> pointList = database.pointDao().getPointsLinkedToDate(lastSevenDates.get(i).id);
             for (int j = 0; j < pointList.size(); j++) {
-                averagePoints[(int) (pointList.get(j).trackerId) - 1] += pointList.get(j).getPoints();// because tracker's id starts from
+                averagePoints[(int) (pointList.get(j).trackerId) - 1] += pointList.get(j).getPoints();
             }
         }
         for (int i = 0; i < averagePoints.length; i++) {

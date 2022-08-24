@@ -45,7 +45,6 @@ public class NotificationQuoteWorker extends Worker {
                 .setAutoCancel(true);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-        // notificationId is a unique int for each notification that you must define
         notificationManager.notify(0, builder.build());
     }
 

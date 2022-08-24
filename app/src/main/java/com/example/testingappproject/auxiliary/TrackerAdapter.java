@@ -40,7 +40,6 @@ public class TrackerAdapter extends RecyclerView.Adapter<TrackerAdapter.ViewHold
         TrackerDatePoint tracker = trackers.get(position);
         holder.headline.setText(tracker.headline);
         holder.pb.setProgress((int) Math.round(tracker.points * 100.0 / tracker.max_points));
-//        holder.itemImg.setImageResource(tracker.img_res);
         holder.itemImg.setBackground(context.getResources().getDrawable(tracker.img_res));
     }
 

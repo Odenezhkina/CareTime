@@ -47,12 +47,11 @@ public class HomeFragment extends Fragment {
         rv = view.findViewById(R.id.recyclerView_trackers);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(llm);
-        rv.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), rv, (v, position) -> fragmentSendDataListener.onSendData(position)));
+        rv.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), (v, position) -> fragmentSendDataListener.onSendData(position)));
         viewModel.getTrackerDatePointLiveData().observe(getViewLifecycleOwner(), listTrackers -> rv.setAdapter(new TrackerAdapter(getContext(), listTrackers)));
     }
 
 
-    //to send data between two fragments we need to create an interface which our activity will implement
     public interface OnFragmentSendDataListener {
         void onSendData(int position);
     }
